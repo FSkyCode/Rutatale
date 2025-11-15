@@ -70,22 +70,22 @@ function iniciarCombate(enemy) {
 function mostrarOpcionesCombate() {
   print(`Tu HP: ${player.hp} | HP de ${enemigoActual.name}: ${enemigoActual.hp}`);
   print("Elige tu acción:");
-  print("[1] Atacar");
-  print("[2] Defender");
-  print("[3] Sanarse");
-  print("[4] Hablar");
+  print("[a] Atacar");
+  print("[s] Defender");
+  print("[d] Sanarse");
+  print("[f] Hablar");
 }
 
 function procesarCombate(op) {
   const enemy = enemigoActual;
 
-  if (op === "1") {
+  if (op === "a") {
     let daño = Math.floor(Math.random() * 5) + (player.attack - 2);
     enemy.hp -= daño;
     print(`➡ Atacas e infliges ${daño} de daño.`);
   }
 
-  else if (op === "2") {
+  else if (op === "s") {
     let daño = Math.max(1, enemy.atk - player.defense * 2);
     player.hp -= daño;
     print("🛡 Te defiendes.");
@@ -94,7 +94,7 @@ function procesarCombate(op) {
     return mostrarOpcionesCombate();
   }
 
-  else if (op === "3") {
+  else if (op === "d") {
     print("✨ Te sanas.");
     player.hp += 15;
     print(`Tu HP ahora es ${player.hp}.`);
@@ -104,7 +104,7 @@ function procesarCombate(op) {
     return mostrarOpcionesCombate();
   }
 
-  else if (op === "4") {
+  else if (op === "f") {
     if (Math.random() < 0.35) {
       print(`💬 Hablas con ${enemy.name}… ¡y huye!`);
       spared.push(enemy.name);
