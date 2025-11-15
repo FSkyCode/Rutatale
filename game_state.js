@@ -29,11 +29,12 @@ export function jefe_final() {
 }
 
 // === ESTADOS GLOBALES ===
-export let player = new Player();
-export let enemigoActual = null;
-export let distancia = 0;
-export let meta = 10;
-export let estado = "intro";
-
-export let kills = [];
-export let spared = [];
+export const state = {
+  player: new Player(),
+  enemigoActual: null,
+  distancia: 0,
+  meta: 10,
+  estado: "intro",
+  kills: [],
+  spared: []
+};
