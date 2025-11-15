@@ -85,7 +85,7 @@ function procesarCombate(op) {
     print(`➡ Atacas e infliges ${daño} de daño.`);
   }
 
-  else if (op === "s" || op === "S) {
+  else if (op === "s" || op === "S") {
     let daño = Math.max(1, enemy.atk - player.defense * 2);
     player.hp -= daño;
     print("🛡 Te defiendes.");
@@ -94,7 +94,7 @@ function procesarCombate(op) {
     return mostrarOpcionesCombate();
   }
 
-  else if (op === "d" || op === "D) {
+  else if (op === "d" || op === "D") {
     print("✨ Te sanas.");
     player.hp += 15;
     print(`Tu HP ahora es ${player.hp}.`);
@@ -169,7 +169,7 @@ function mostrarFinal() {
 
 function procesarEntrada(texto) {
   if (estado === "intro") {
-    print("🔥 AVENTURA INICIADA 🔥");
+    print("Rutatale VS 0.3");
     print("Presiona ENTER vacío para avanzar.\n");
     estado = "caminar";
     return;
