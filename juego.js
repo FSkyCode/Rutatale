@@ -170,8 +170,7 @@ function mostrarFinal() {
 
 function procesarEntrada(texto) {
   if (estado === "intro") {
-    term.innerHTML = "<div style='margin-top: 400px;'></div>";
-    print("Rutatale VS 0.4");
+    print("Rutatale VS 0.5");
     print("Presiona ENTER vacío para avanzar.\n");
     estado = "caminar";
     return;
