@@ -1,31 +1,37 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rutatale — Combate (demo tablero 3 casillas)</title>
-  <link rel="stylesheet" href="./style.css" />
+  <meta charset="UTF-8">
+  <title>RUTATALE — Combate Experimental</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="wrap">
-    <h2>Demo combate — 3 casillas</h2>
 
-    <div id="boardContainer" class="board-container" aria-label="Tablero combate">
-      <!-- Las casillas se crean dinámicamente por board.js -->
-    </div>
+<div id="game">
 
-    <div class="controls">
-      <button id="move1">Mover a 1</button>
-      <button id="move2">Mover a 2</button>
-      <button id="move3">Mover a 3</button>
-      <button id="random">Mover aleatorio</button>
-      <button id="spawn">Crear enemigo</button>
-      <label class="hint">Pulsa 1 / 2 / 3 para mover</label>
-    </div>
-
-    <div class="log" id="log"></div>
+  <!-- Zona donde irá el enemigo -->
+  <div id="battleArea">
+    <div id="enemy"></div>
   </div>
 
-  <script type="module" src="./main.js"></script>
+  <!-- 3 casillas -->
+  <div id="grid">
+    <div class="cell" data-pos="1"></div>
+    <div class="cell" data-pos="2"></div>
+    <div class="cell" data-pos="3"></div>
+  </div>
+
+  <!-- Botones -->
+  <div id="actions">
+    <button id="btnAttack">Atacar</button>
+    <button id="btnDefend">Defender</button>
+    <button id="btnHeal">Sanar</button>
+    <button id="btnTalk">Hablar</button>
+  </div>
+
+</div>
+
+<script src="main.js"></script>
 </body>
 </html>
