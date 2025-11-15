@@ -1,34 +1,24 @@
-const enemy = document.getElementById("enemy");
-const cells = document.querySelectorAll(".cell");
+document.getElementById("start").addEventListener("click", () => {
 
-let pos = 2; // posición inicial del monstruo
+    // Datos del jugador
+    const player = {
+        name: "Juan",
+        hp: 20,
+        maxHp: 20,
+        casilla: 1
+    };
 
-function drawEnemy() {
-  cells.forEach(c => c.innerHTML = "");
-  cells[pos - 1].innerHTML = "😈"; 
-}
+    // Datos del enemigo
+    const enemy = {
+        name: "Slime",
+        hp: 15,
+        maxHp: 15,
+        casilla: 1
+    };
 
-drawEnemy();
+    // Enviar datos a combate/index.html
+    localStorage.setItem("battle_player", JSON.stringify(player));
+    localStorage.setItem("battle_enemy", JSON.stringify(enemy));
 
-// EVENTOS DE BOTONES
-document.getElementById("btnAttack").onclick = () => {
-  console.log("Atacar...");
-};
-
-document.getElementById("btnDefend").onclick = () => {
-  console.log("Defender...");
-};
-
-document.getElementById("btnHeal").onclick = () => {
-  console.log("Sanar...");
-};
-
-document.getElementById("btnTalk").onclick = () => {
-  console.log("Hablar...");
-};
-
-// Cambiar casilla del enemigo (pruebas)
-setInterval(() => {
-  pos = Math.floor(Math.random() * 3) + 1;
-  drawEnemy();
-}, 1500);
+    window.location.href = "combate/index.html";
+});
