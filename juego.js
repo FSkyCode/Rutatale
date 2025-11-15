@@ -2,10 +2,10 @@
 //   SISTEMA DE TERMINAL
 // ===============================
 
-term.innerHTML = "<div style='margin-top: 400px;'></div>";
-
 const term = document.getElementById("terminal");
 const input = document.getElementById("inputLine");
+
+term.innerHTML = "<div style='margin-top: 400px;'></div>";
 
 function print(text) {
   term.innerText += text + "\n";
