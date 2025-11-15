@@ -1,103 +1,38 @@
-:root{
-  --bg: #000;
-  --cell-bg: #0f3; /* brillante en caso necesario */
-  --cell-dark: #003300;
-  --accent: #00ff55;
-  --panel: rgba(0,0,0,0.6);
-  --text: #dfffe6;
+body {
+    background: #0a0a0a;
+    color: white;
+    font-family: Arial;
+    text-align: center;
 }
 
-*{box-sizing:border-box; margin:0; padding:0; font-family: monospace;}
-
-html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;color:var(--text);}
-
-.overlay{
-  position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-  background: rgba(0,0,0,0.6);
+#board {
+    margin-top: 20px;
 }
 
-/* ventana central */
-.window{
-  width:92vw;
-  max-width:980px;
-  height:86vh;
-  background: linear-gradient(180deg,#04110a,#071a12);
-  border:4px solid #003300;
-  border-radius:12px;
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  gap:14px;
+.row {
+    display: flex;
+    justify-content: center;
 }
 
-/* HUD superior */
-.hud{display:flex; justify-content:space-between; gap:10px;}
-.stats{
-  background:var(--panel);
-  padding:8px 12px;
-  border-radius:8px;
-  border:2px solid rgba(0,255,136,0.06);
-  min-width:160px;
+.casilla {
+    width: 90px;
+    height: 90px;
+    background: #333;
+    margin: 10px;
+    border-radius: 8px;
+    border: 2px solid #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
 }
 
-/* GRID (casillas) */
-.grid{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:22px;
-  padding:10px;
-}
+.casilla.player { background: #1f5; }
+.casilla.enemy  { background: #f33; }
 
-/* Casillas visibles y grandes */
-.cell{
-  width:28%;
-  height:78%;
-  min-width:160px;
-  min-height:160px;
-  border-radius:10px;
-  border:5px solid var(--accent);
-  background: var(--cell-dark);   /* verde oscuro */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  box-shadow:0 0 24px rgba(0,255,136,0.06), inset 0 -18px 40px rgba(0,0,0,0.45);
-  transition: box-shadow .12s, transform .12s;
-  cursor: pointer;
-}
+.hidden { display: none; }
 
-/* area para sprite */
-.cell .slot{
-  width:78%;
-  height:76%;
-  border-radius:8px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.1));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:44px;
-}
-
-/* highlight seleccionable */
-.cell.selectable{ box-shadow:0 0 40px rgba(0,255,136,0.45); transform: translateY(-6px); }
-
-/* enemigo y jugador visual */
-.token{ width:92px; height:92px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-weight:700; }
-.token.enemy{ background:#7b1; color:#001100; }
-.token.player{ background:#1e7; color:#002200; transform: scale(1.02); }
-
-/* botones */
-.actions{ display:flex; gap:12px; align-items:center; }
-.actions button{
-  padding:12px 18px; border-radius:8px; border:3px solid var(--accent);
-  background:#001900; color:var(--accent); cursor:pointer; font-size:16px;
-}
-.actions button:active{ transform: translateY(2px); }
-
-/* registro */
-.log{
-  height:110px; overflow:auto; background:rgba(0,0,0,0.4); border-radius:8px; padding:10px; border:1px solid rgba(255,255,255,0.02);
-  font-size:14px;
+button {
+    margin: 5px;
+    font-size: 18px;
 }
