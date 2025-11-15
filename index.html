@@ -1,17 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RPG en Python</title>
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: black;
+        color: white;
+        font-family: monospace;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      h1 {
+        text-align: center;
+        margin: 10px;
+        font-size: 24px;
+      }
+
+      py-terminal {
+        width: 100%;
+        height: calc(100vh - 50px);
+        display: block;
+        font-size: 18px;
+      }
+    </style>
+
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
   </head>
 
   <body>
 
-    <h1>RPG en Python</h1>
+    <h1>🔥 RPG en Python 🔥</h1>
 
-    <!-- Terminal donde se verá tu juego -->
     <py-terminal id="consola"></py-terminal>
 
-    <!-- Archivo del juego -->
     <py-script terminal="consola" src="juego.py"></py-script>
 
   </body>
