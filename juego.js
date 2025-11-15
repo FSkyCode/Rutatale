@@ -5,7 +5,6 @@
 const term = document.getElementById("terminal");
 const input = document.getElementById("inputLine");
 
-term.innerHTML = "<div style='margin-top: 400px;'></div>";
 
 function print(text) {
   term.innerText += text + "\n";
@@ -171,7 +170,8 @@ function mostrarFinal() {
 
 function procesarEntrada(texto) {
   if (estado === "intro") {
-    print("Rutatale VS 0.3");
+    term.innerHTML = "<div style='margin-top: 400px;'></div>";
+    print("Rutatale VS 0.4");
     print("Presiona ENTER vacío para avanzar.\n");
     estado = "caminar";
     return;
