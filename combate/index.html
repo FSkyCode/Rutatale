@@ -1,28 +1,37 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Combate Test</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rutatale — Combate (demo)</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
+  <div id="combateOverlay" class="overlay">
+    <div id="combatWindow" class="window">
+      <div id="topHUD" class="hud">
+        <div id="playerStats" class="stats"></div>
+        <div id="enemyStats" class="stats"></div>
+      </div>
 
-<div id="game">
+      <div id="grid" class="grid">
+        <div class="cell" data-pos="1"></div>
+        <div class="cell" data-pos="2"></div>
+        <div class="cell" data-pos="3"></div>
+      </div>
 
-  <div id="grid">
-    <div class="cell"></div>
-    <div class="cell"></div>
-    <div class="cell"></div>
+      <div id="actions" class="actions">
+        <button id="btnAttack">Atacar</button>
+        <button id="btnDefend">Defender</button>
+        <button id="btnHeal">Sanar</button>
+        <button id="btnTalk">Hablar</button>
+        <button id="btnClose" title="Cerrar demo">Cerrar</button>
+      </div>
+
+      <div id="log" class="log"></div>
+    </div>
   </div>
 
-  <div id="actions">
-    <button>Atacar</button>
-    <button>Defender</button>
-    <button>Sanar</button>
-    <button>Hablar</button>
-  </div>
-
-</div>
+  <script type="module" src="./js/main.js"></script>
 </body>
 </html>
