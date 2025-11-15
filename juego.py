@@ -1,12 +1,5 @@
-#!/usr/bin/python3
-
 import random
-import sys
-import os
 
-def limpiar_pantalla():
-    os.system('cls' if os.name == 'nt' else 'clear')
-    
 class Player:
     def __init__(self):
         self.hp = 30
@@ -32,12 +25,11 @@ def jefe_final():
     return Enemy("DRAGÓN FINAL", 30, 10)
 
 # ===== REGISTROS DE RUTA =====
-kills = []       # enemigos derrotados
-spared = []      # enemigos perdonados
+kills = []       # derrotados
+spared = []      # perdonados
 
 
 def combate(player, enemy):
-    limpiar_pantalla()
     print(f"\n🔥 ¡Un {enemy.name} aparece! HP enemigo: {enemy.hp}\n")
 
     while enemy.hp > 0 and player.hp > 0:
@@ -50,34 +42,29 @@ def combate(player, enemy):
 
         op = input("> ")
 
-        limpiar_pantalla()
-
         if op == "1":
             daño = random.randint(player.attack-2, player.attack+2)
             enemy.hp -= daño
             print(f"➡ Atacas e infliges {daño} de daño.")
 
         elif op == "2":
-            print("🛡 Te defiendes y recibes menos daño.")
+            print("🛡 Te defiendes.")
             daño = max(1, enemy.atk - player.defense*2)
             player.hp -= daño
             print(f"El enemigo te golpea causando {daño}.")
             continue    
 
         elif op == "3":
-            print("✨ Sanas mágicamente.")
+            print("✨ Te sanas.")
             player.hp += 15
             print(f"Tu HP ahora es {player.hp}.")
-
-            if enemy.hp > 0:
-                daño = enemy.atk
-                player.hp -= daño
-                print(f"💥 El {enemy.name} te golpea causando {daño}.")
+            player.hp -= enemy.atk
+            print(f"💥 El {enemy.name} te golpea causando {enemy.atk}.")
             continue
 
         elif op == "4":
             if random.random() < 0.35:
-                print(f"💬 Hablas con {enemy.name}… ¡y decide dejarte pasar!")
+                print(f"💬 Hablas con {enemy.name}… ¡y huye!")
                 spared.append(enemy.name)
                 return True
             else:
@@ -86,14 +73,14 @@ def combate(player, enemy):
             print("Opción inválida.")
             continue
 
+        # ataque enemigo
         if enemy.hp > 0:
-            daño = enemy.atk
-            player.hp -= daño
-            print(f"💥 El {enemy.name} te golpea causando {daño} de daño.")
+            player.hp -= enemy.atk
+            print(f"💥 El {enemy.name} te golpea causando {enemy.atk} de daño.")
 
     if player.hp <= 0:
         print("\n💀 Has sido derrotado… GAME OVER")
-        sys.exit()
+        return False
 
     print(f"\n✔ Derrotaste a {enemy.name}!\n")
     kills.append(enemy.name)
@@ -108,9 +95,9 @@ distancia = 0
 meta = 10
 
 print("🔥 AVENTURA INICIADA 🔥")
-print("Avanza presionando ESPACIO. Llega a la meta y enfrenta al jefe final.\n")
+print("Presiona ESPACIO (deja vacío y dale Enter) para avanzar.\n")
 
-while distancia < meta:
+while distancia < meta and player.hp > 0:
     tecla = input("Presiona ESPACIO para avanzar: ")
 
     if tecla.strip() != "":
@@ -122,39 +109,41 @@ while distancia < meta:
 
     if random.random() < 0.45:
         enemigo = generar_enemigo()
-        combate(player, enemigo)
+        if not combate(player, enemigo):
+            break
 
-print("🔥 ¡HAS LLEGADO AL JEFE FINAL! 🔥")
-combate(player, jefe_final())
+if player.hp > 0:
+    print("🔥 ¡HAS LLEGADO AL JEFE FINAL! 🔥")
+    combate(player, jefe_final())
 
-print("\n🎉 ¡GANASTE EL JUEGO! ¡ERES UNA LEYENDA! 🎉")
-input("\nPresiona ENTER para ver tu RUTA FINAL... ")
+if player.hp > 0:
+    print("\n🎉 ¡GANASTE EL JUEGO! ¡ERES UNA LEYENDA! 🎉")
+    input("\nPresiona ENTER para ver tu RUTA FINAL... ")
 
-# ============================
-#      RESULTADO FINAL
-# ============================
-limpiar_pantalla()
-print("📜 RESULTADO DE TU AVENTURA 📜\n")
+    # ============================
+    #      RESULTADO FINAL
+    # ============================
+    print("\n📜 RESULTADO DE TU AVENTURA 📜\n")
 
-total = len(kills) + len(spared)
+    total = len(kills) + len(spared)
 
-print(f"Enemigos encontrados: {total}")
-print(f"Enemigos derrotados: {len(kills)}")
-print(f"Enemigos perdonados: {len(spared)}\n")
+    print(f"Enemigos encontrados: {total}")
+    print(f"Enemigos derrotados: {len(kills)}")
+    print(f"Enemigos perdonados: {len(spared)}\n")
 
-# rutas principales
-if len(kills) == total and total > 0:
-    print("🔪 RUTA: GENOCIDA")
-elif len(spared) == total and total > 0:
-    print("🌱 RUTA: PACIFISTA")
-else:
-    print("⚖ RUTA: NEUTRAL")
+    # rutas principales
+    if len(kills) == total and total > 0:
+        print("🔪 RUTA: GENOCIDA")
+    elif len(spared) == total and total > 0:
+        print("🌱 RUTA: PACIFISTA")
+    else:
+        print("⚖ RUTA: NEUTRAL")
 
-# títulos especiales
-if "Slime" in kills and "Esqueleto" in kills:
-    print("🏆 TÍTULO ESPECIAL: Cazador de Huesos y Gelatina")
+    # títulos especiales
+    if "Slime" in kills and "Esqueleto" in kills:
+        print("🏆 TÍTULO: Cazador de Huesos y Gelatina")
 
-if "Goblin" in spared:
-    print("✨ TÍTULO ESPECIAL: Diplomático Goblin")
+    if "Goblin" in spared:
+        print("✨ TÍTULO: Diplomático Goblin")
 
-print("\nGracias por jugar 💖")
+    print("\nGracias por jugar 💖")
