@@ -1,44 +1,76 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RPG en Python</title>
+<head>
+  <style>
+    body {
+      background: black;
+      color: #00ff00;
+      font-family: monospace;
+      padding: 20px;
+    }
 
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background: black;
-        color: white;
-        font-family: monospace;
-        height: 100vh;
-        overflow: hidden;
+    #terminal {
+      width: 100%;
+      height: 400px;
+      background: #000000;
+      border: 1px solid #00ff00;
+      padding: 10px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    #inputLine {
+      width: 100%;
+      background: black;
+      color: #00ff00;
+      border: none;
+      font-family: monospace;
+      font-size: 16px;
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>💻 Terminal del juego</h2>
+
+<div id="terminal"></div>
+<input id="inputLine" autocomplete="off" />
+
+<script>
+  const term = document.getElementById("terminal");
+  const input = document.getElementById("inputLine");
+
+  function print(text) {
+    term.innerText += text + "\n";
+    term.scrollTop = term.scrollHeight;
+  }
+
+  // MENSAJE INICIAL (como tu juego)
+  print("Rutatale");
+  print("Escribe cualquier cosa para probar la terminal...\n");
+
+  input.focus();
+
+  input.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      const comando = input.value.trim();
+      print("> " + comando);
+
+      // Aquí podrás conectar el juego luego, por ahora solo responde
+      if (comando === "") {
+        print("Presionaste ENTER");
+      } else if (comando === "hola") {
+        print("El juego responde: Hola aventurero!");
+      } else {
+        print("Comando recibido: " + comando);
       }
 
-      h1 {
-        text-align: center;
-        margin: 10px;
-        font-size: 24px;
-      }
+      input.value = "";
+    }
+  });
+</script>
 
-      py-terminal {
-        width: 100%;
-        height: calc(100vh - 50px);
-        display: block;
-        font-size: 18px;
-      }
-    </style>
-
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-  </head>
-
-  <body>
-
-    <h1>🔥 RPG en Python 🔥</h1>
-
-    <py-terminal id="consola"></py-terminal>
-
-    <py-script terminal="consola" src="juego.py"></py-script>
-
-  </body>
+</body>
 </html>
