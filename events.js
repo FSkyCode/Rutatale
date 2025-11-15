@@ -10,7 +10,7 @@ import { generar_enemigo, jefe_final } from "./game_state.js";
 
 export function procesarEntrada(texto) {
   if (estado === "intro") {
-    print("Rutatale VS 0.6");
+    print("Rutatale for zfSkyCode");
     print("Presiona ENTER vacío para avanzar.\n");
     estado = "caminar";
     return;
