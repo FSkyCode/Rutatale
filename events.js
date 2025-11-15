@@ -1,37 +1,25 @@
 import { print } from "./terminal.js";
-import { state } from "./game_state.js";
-import { iniciarCombate, procesarCombate } from "./combat.js";
-import { generar_enemigo, jefe_final } from "./game_state.js";
 
 export function procesarEntrada(texto) {
-  if (state.estado === "intro") {
-    print("Rutatale for zfSkyCode");
-    print("Presiona ENTER vacío para avanzar.\n");
-    state.estado = "caminar";
-    return;
-  }
+  if (texto === "") return;
 
-  if (state.estado === "caminar") {
-    if (texto !== "") {
-      print("Solo usa ENTER vacío.");
-      return;
-    }
+  print("> " + texto); // Eco del usuario
 
-    state.distancia++;
-    print(`➡ Avanzaste. Progreso: ${state.distancia}/${state.meta}`);
+  // Respuestas simples
+  switch (texto.toLowerCase()) {
+    case "hola":
+      print("Sistema: ¡Hola viajero!");
+      break;
 
-    if (Math.random() < 0.45) {
-      iniciarCombate(generar_enemigo());
-      return;
-    }
+    case "ayuda":
+      print("Comandos disponibles: hola, ayuda, clear");
+      break;
 
-    if (state.distancia >= state.meta) {
-      print("🔥 ¡HAS LLEGADO AL JEFE FINAL! 🔥");
-      iniciarCombate(jefe_final());
-    }
-  }
+    case "clear":
+      document.getElementById("terminal").innerText = "";
+      break;
 
-  if (state.estado === "combate") {
-    procesarCombate(texto);
+    default:
+      print("Comando desconocido: " + texto);
   }
 }
