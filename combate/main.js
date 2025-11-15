@@ -1,24 +1,15 @@
-document.getElementById("start").addEventListener("click", () => {
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Juego - Demo</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
 
-    // Datos del jugador
-    const player = {
-        name: "Juan",
-        hp: 20,
-        maxHp: 20,
-        casilla: 1
-    };
+<h1>Mini RPG — Demo</h1>
 
-    // Datos del enemigo
-    const enemy = {
-        name: "Slime",
-        hp: 15,
-        maxHp: 15,
-        casilla: 1
-    };
+<button id="start">Iniciar Batalla</button>
 
-    // Enviar datos a combate/index.html
-    localStorage.setItem("battle_player", JSON.stringify(player));
-    localStorage.setItem("battle_enemy", JSON.stringify(enemy));
-
-    window.location.href = "combate/index.html";
-});
+<script src="main.js"></script>
+</body>
+</html>
