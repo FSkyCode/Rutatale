@@ -3,9 +3,16 @@
   <head>
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
   </head>
-  <body>
-    <h1>Tu RPG en el Navegador</h1>
 
-    <py-script src="juego.py"></py-script>
+  <body>
+
+    <h1>RPG en Python</h1>
+
+    <!-- Terminal donde se verá tu juego -->
+    <py-terminal id="consola"></py-terminal>
+
+    <!-- Archivo del juego -->
+    <py-script terminal="consola" src="juego.py"></py-script>
+
   </body>
 </html>
